@@ -66,7 +66,7 @@ if [[ ! ($INSPECT_ONLY == 1) ]]; then
     echo "Embedding provision       '$(/usr/libexec/PlistBuddy -c "Print :Name" provision.plist)', which supports '$(/usr/libexec/PlistBuddy -c "Print :Entitlements:application-identifier" provision.plist)'"
     rm -rf Payload/*.app/_CodeSignature Payload/*.app/CodeResources
     cp "$PROVISION" Payload/*.app/embedded.mobileprovision
-    /usr/bin/codesign -f -s "$CERTIFICATE" --resource-rules Payload/*.app/ResourceRules.plist Payload/*.app
+    /usr/bin/codesign -f -s "$CERTIFICATE" Payload/*.app
     zip -qr "$IPA_NEW" Payload
 fi
 [[ $CLEANUP_TEMP -eq 1 ]] && rm -rf "$TMP"
